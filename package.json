@@ -1,12 +1,12 @@
 {
   "name": "ember-priority-queue",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Prioritised, promise aware queue for better loading behaviour in ember",
   "keywords": [
     "ember-addon"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Kelvin Luck",
   "directories": {
     "doc": "doc",
     "test": "tests"
