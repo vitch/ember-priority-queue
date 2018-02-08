@@ -32,7 +32,7 @@
   <dd>
     <ul>
       {{#each priorityQueue.queuedTasks as |task|}}
-        <li>{{task._addedAt}} (priority {{task.priority}})</li>
+        <li>Queued: {{time task._addedAt}} (priority {{task.priority}})</li>
       {{else}}
         <li>None</li>
       {{/each}}
@@ -43,7 +43,7 @@
   <dd>
     <ul>
       {{#each priorityQueue.runningTasks as |task|}}
-        <li>{{task._addedAt}} (priority {{task.priority}})</li>
+        <li>Queued: {{time task._addedAt}} Started: {{time task._startedAt}} (priority {{task.priority}} - waited {{task._durationWaiting}})</li>
       {{else}}
         <li>None</li>
       {{/each}}
@@ -54,7 +54,7 @@
   <dd>
     <ul>
       {{#each priorityQueue.completeTasks as |task|}}
-        <li>{{task._addedAt}} (priority {{task.priority}})</li>
+        <li>Queued: {{time task._addedAt}} Started: {{time task._startedAt}} Completed:{{time task._completedAt}} (priority {{task.priority}} - waited {{task._durationWaiting}}, completed in {{task._durationRunning}})</li>
       {{else}}
         <li>None</li>
       {{/each}}

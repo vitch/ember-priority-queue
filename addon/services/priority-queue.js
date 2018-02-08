@@ -61,15 +61,21 @@ export default Service.extend({
   },
 
   _runTask(task) {
+    let startedAt = Date.now();
     task.setProperties({
+      _durationWaiting: startedAt - task.get('_addedAt'),
       _isRunning: true,
       _isQueued: false,
+      _startedAt: startedAt,
     });
     task.get('task')()
       .then(() => {
+        let completedAt = Date.now();
         task.setProperties({
           _isComplete: true,
           _isRunning: false,
+          _completedAt: completedAt,
+          _durationRunning: completedAt - startedAt,
         })
         this._fillQueue();
       });
