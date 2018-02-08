@@ -10,14 +10,15 @@ export default Service.extend({
   queuedTasks: computed.readOnly('_queuedTasks'),
 
   addItem({ priority, task }) {
-    this.get('_allTasks').addObject(EmberObject.create({
+    let newTask = EmberObject.create({
       _addedAt: Date.now(),
       _isComplete: false,
       _isRunning: false,
       _isQueued: true,
       priority,
       task,
-    }));
+    });
+    this.get('__allTasks').addObject(newTask);
     this._fillQueue();
   },
 
@@ -38,7 +39,9 @@ export default Service.extend({
     }
   },
 
-  _allTasks: computed(() =>  A([])),
+  __allTasks: computed(() =>  A([])),
+  _allTasks: computed.sort('__allTasks', '_allTasksSort'),
+  _allTasksSort: computed(() => ['priority:asc']),
   _completeTasks: computed.filterBy('_allTasks', '_isComplete', true),
   _isRunning: false,
   _maxConcurrentTasks: 3,
