@@ -6,6 +6,17 @@ import { computed } from '@ember/object';
 export default Service.extend({
   completeTasks: computed.readOnly('_completeTasks'),
   isRunning: computed.readOnly('_isRunning'),
+  maxConcurrentTasks: computed('_maxConcurrentTasks', {
+    get() {
+      return this.get('_maxConcurrentTasks');
+    },
+    set(key, value) {
+      this.set('_maxConcurrentTasks', value);
+      this._fillQueue();
+      return value;
+    },
+  }),
+
   runningTasks: computed.readOnly('_runningTasks'),
   queuedTasks: computed.readOnly('_queuedTasks'),
 
