@@ -4,12 +4,25 @@ import { setupTest } from 'ember-qunit';
 module('Unit | Service | priority queue', function(hooks) {
   setupTest(hooks);
 
-  test('it exists', function(assert) {
+  hooks.beforeEach(function() {
     let Factory = this.owner.factoryFor('service:priority-queue');
-    let subject = Factory.create({ });
+    this.subject = Factory.create({ });
+  });
 
-    assert.ok(subject);
+  test('it starts paused', function(assert) {
+    assert.strictEqual(this.subject.get('isRunning'), false);
+  });
 
+  test('you can start it', function(assert) {
+    this.subject.start();
+    assert.strictEqual(this.subject.get('isRunning'), true);
+  });
+
+  test('you can pause it again', function(assert) {
+    this.subject.start();
+    assert.strictEqual(this.subject.get('isRunning'), true);
+    this.subject.pause();
+    assert.strictEqual(this.subject.get('isRunning'), false);
   });
 });
 
