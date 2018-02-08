@@ -1,0 +1,63 @@
+<h1>Priority Queue Demo</h1>
+
+<p>
+  This demo shows a priority queue in action. You can manipulate the
+  queue using the controls below and see the results.
+</p>
+
+<button {{action 'startQueue'}}>Start Queue</button>
+<button {{action 'pauseQueue'}}>Pause Queue</button>
+<button {{action 'clearQueue'}}>Clear Queue</button>
+
+<p>
+  The following type of items are available for you to add to the queue:
+</p>
+
+<ul>
+  {{#each availablaItems as |item|}}
+    <li>
+      <strong>{{item.name}}</strong> has a priority of {{item.priority}} and takes {{item.duration}}ms to complete
+      <button {{action 'addItem' item}}>Add {{item.name}}</button>
+    </li>
+  {{/each}}
+</ul>
+
+<h2>Queue status</h2>
+
+<dl>
+  <dt>Is running?</dt>
+  <dd>{{priorityQueue.isRunning}}</dd>
+
+  <dt>Queued tasks</dt>
+  <dd>
+    <ul>
+      {{#each priorityQueue.queuedTasks as |task|}}
+        <li>{{task._addedAt}} (priority {{task.priority}})</li>
+      {{else}}
+        <li>None</li>
+      {{/each}}
+    </ul>
+  </dd>
+
+  <dt>Active tasks</dt>
+  <dd>
+    <ul>
+      {{#each priorityQueue.runningTasks as |task|}}
+        <li>{{task._addedAt}} (priority {{task.priority}})</li>
+      {{else}}
+        <li>None</li>
+      {{/each}}
+    </ul>
+  </dd>
+
+  <dt>Complete tasks</dt>
+  <dd>
+    <ul>
+      {{#each priorityQueue.completeTasks as |task|}}
+        <li>{{task._addedAt}} (priority {{task.priority}})</li>
+      {{else}}
+        <li>None</li>
+      {{/each}}
+    </ul>
+  </dd>
+</dl>
