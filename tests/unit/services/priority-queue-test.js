@@ -95,5 +95,15 @@ module('Unit | Service | priority queue', function(hooks) {
         });
       });
   });
+
+  test('the queue can be cleared', function(assert) {
+    this.subject.addItem({ priority: 10, task: () => new RSVP.Promise(() => {} ) });
+    this.subject.addItem({ priority: 1, task: () => new RSVP.Promise(() => {} ) });
+    this.subject.addItem({ priority: 5, task: () => new RSVP.Promise(() => {} ) });
+    this.subject.addItem({ priority: 5, task: () => new RSVP.Promise(() => {} ) });
+    assert.strictEqual(this.subject.get('queuedTasks.length'), 4);
+    this.subject.clear();
+    assert.strictEqual(this.subject.get('queuedTasks.length'), 0);
+  });
 });
 

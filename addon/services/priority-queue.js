@@ -34,7 +34,9 @@ export default Service.extend({
   },
 
   clear() {
-
+    A(this.get('_allTasks')
+      .filterBy('_isQueued', true))
+      .setEach('_isQueued', false);
   },
 
   pause() {
