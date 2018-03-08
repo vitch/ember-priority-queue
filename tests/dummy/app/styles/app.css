@@ -1,0 +1,15 @@
+.task-timeline {
+  overflow: auto;
+  height: 300px;
+}
+
+.task-timeline .column {
+  float: left;
+  width: 10px;
+}
+
+
+.task-timeline .item {
+  width: 10px;
+  height: 10px;
+}

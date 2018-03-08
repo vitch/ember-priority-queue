@@ -14,13 +14,23 @@
 </p>
 
 <ul>
-  {{#each availablaItems as |item|}}
+  {{#each availableItems as |item|}}
     <li>
       <strong>{{item.name}}</strong> has a priority of {{item.priority}} and takes {{item.duration}}ms to complete
       <button {{action 'addItem' item}}>Add {{item.name}}</button>
     </li>
   {{/each}}
 </ul>
+
+<div class="task-timeline">
+  {{#each _taskStory as |column|}}
+    <div class="column">
+      {{#each column as |row|}}
+        <div class="item" style="background:{{row.color}}"></div>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>
 
 <h2>Queue status</h2>
 
