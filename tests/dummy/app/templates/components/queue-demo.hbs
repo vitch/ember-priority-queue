@@ -26,7 +26,7 @@
   {{#each _taskStory as |column|}}
     <div class="column">
       {{#each column as |row|}}
-        <div class="item" style="background:{{row.color}}"></div>
+        <div class="item" style={{row.style}}></div>
       {{/each}}
     </div>
   {{/each}}

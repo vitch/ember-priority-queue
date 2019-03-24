@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import RSVP from 'rsvp';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/string';
 import layout from '../templates/components/queue-demo';
 import { run } from '@ember/runloop';
 import { inject as service } from '@ember/service';
@@ -47,7 +48,7 @@ export default Component.extend({
     this.get('_taskStory').addObject(
 
       this.get('demoQueue.__allTasks').map((task) => ({
-        color: getColor(task),
+        style: htmlSafe(`background: ${getColor(task)}`),
       }))
     );
     if (this.get('_taskStory.length') > 50) {
