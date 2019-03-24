@@ -23,6 +23,10 @@ export default Component.extend({
 
   priorityQueue: service('priority-queue'),
 
+  demoQueue: computed(function() {
+    return this.get('priorityQueue').getQueue('demo-queue');
+  }),
+
   availableItems: computed(() => [
     { duration: 1000, name: 'Item 1', priority: 1 },
     { duration: 2000, name: 'Item 2', priority: 10 },
@@ -42,7 +46,7 @@ export default Component.extend({
   _updateTaskRepresentation() {
     this.get('_taskStory').addObject(
 
-      this.get('priorityQueue.__allTasks').map((task) => ({
+      this.get('demoQueue.__allTasks').map((task) => ({
         color: getColor(task),
       }))
     );
@@ -62,19 +66,19 @@ export default Component.extend({
         }, item.duration)
         return waiter.promise;
       };
-      this.get('priorityQueue').addItem({ priority: item.priority, task });
+      this.get('demoQueue').addItem({ priority: item.priority, task });
     },
 
     clearQueue() {
-      this.get('priorityQueue').clear();
+      this.get('demoQueue').clear();
     },
 
     pauseQueue() {
-      this.get('priorityQueue').pause();
+      this.get('demoQueue').pause();
     },
 
     startQueue() {
-      this.get('priorityQueue').start();
+      this.get('demoQueue').start();
     },
   },
 });

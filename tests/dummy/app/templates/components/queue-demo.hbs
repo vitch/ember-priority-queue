@@ -36,12 +36,12 @@
 
 <dl>
   <dt>Is running?</dt>
-  <dd>{{priorityQueue.isRunning}}</dd>
+  <dd>{{demoQueue.isRunning}}</dd>
 
   <dt>Queued tasks</dt>
   <dd>
     <ul>
-      {{#each priorityQueue.queuedTasks as |task|}}
+      {{#each demoQueue.queuedTasks as |task|}}
         <li>Queued: {{time task._addedAt}} (priority {{task.priority}})</li>
       {{else}}
         <li>None</li>
@@ -52,7 +52,7 @@
   <dt>Active tasks</dt>
   <dd>
     <ul>
-      {{#each priorityQueue.runningTasks as |task|}}
+      {{#each demoQueue.runningTasks as |task|}}
         <li>Queued: {{time task._addedAt}} Started: {{time task._startedAt}} (priority {{task.priority}} - waited {{task._durationWaiting}})</li>
       {{else}}
         <li>None</li>
@@ -63,7 +63,7 @@
   <dt>Complete tasks</dt>
   <dd>
     <ul>
-      {{#each priorityQueue.completeTasks as |task|}}
+      {{#each demoQueue.completeTasks as |task|}}
         <li>Queued: {{time task._addedAt}} Started: {{time task._startedAt}} Completed:{{time task._completedAt}} (priority {{task.priority}} - waited {{task._durationWaiting}}, completed in {{task._durationRunning}})</li>
       {{else}}
         <li>None</li>
